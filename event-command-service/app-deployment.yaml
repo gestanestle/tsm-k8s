@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecs-app-deployment
+spec:
+  selector:
+    matchLabels:
+      run: ecs-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: ecs-app
+    spec:
+      containers:
+        - name: ecs-app-container
+          image: gestanestle/event-command:3.0
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: ecs-app-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecs-app-service
+  labels:
+    app: ecs-app
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30001
+  selector:
+    app: ecs-app

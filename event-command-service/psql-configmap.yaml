@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecs-psql-config
+  labels:
+    app: ecs-postgres
+data:
+  POSTGRES_DB: event_db
+  POSTGRES_USER: eventmanager
+  POSTGRES_PASSWORD: postgres
+
+---
+
