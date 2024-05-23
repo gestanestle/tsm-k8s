@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ecs-postgres
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: ecs-postgres

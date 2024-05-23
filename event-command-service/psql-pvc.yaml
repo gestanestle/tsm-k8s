@@ -3,11 +3,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: ecs-postgres-volume-claim
   labels:
-    app: postgres
+    app: ecs-postgres
 spec:
   storageClassName: local-storage
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
