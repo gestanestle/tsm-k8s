@@ -1,0 +1,17 @@
+apiVersion: v1
+metadata:
+  name: ecs-psql-user-secret
+data:
+  username: eventmanager
+  password: postgres
+kind: Secret
+type: kubernetes.io/basic-auth
+---
+apiVersion: v1
+metadata:
+  name: ecs-psql-superuser-secret
+data:
+  username: postgres
+  password: postgres
+kind: Secret
+type: kubernetes.io/basic-auth
