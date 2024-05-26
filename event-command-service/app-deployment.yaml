@@ -17,9 +17,9 @@ spec:
           image: gestanestle/event-command:3.0
           ports:
             - containerPort: 8081
-          envFrom:
-            - configMapRef:
-                name: ecs-app-config
+          env:
+            - name: POSTGRES_HOSTNAME
+              value: $(ECS_PG_CLUSTER_R_SERVICE_HOST)
 ---
 apiVersion: v1
 kind: Service

@@ -1,16 +1,9 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: ecs-cluster
+  name: ecs-pg-cluster
 spec:
-  postgresql:
-    parameters:
-      max_worker_processes: "60"
-    pg_hba:
-      # To access through TCP/IP you will need to get username
-      # and password from the secret cluster-example-custom-app
-      - host all all all md5
-  imageName: debezium/postgres:15-alpine
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.6
   instances: 3
   superuserSecret:
     name: ecs-psql-superuser-secret
@@ -21,12 +14,7 @@ spec:
       owner: eventmanager
       secret:
         name: ecs-psql-user-secret
-      dataChecksums: true
-  # Example of rolling update strategy:
-  # - unsupervised: automated update of the primary once all
-  #                 replicas have been upgraded (default)
-  # - supervised: requires manual supervision to perform
-  #               the switchover of the primary
+
   primaryUpdateStrategy: unsupervised
 
   # Require 1Gi of space
