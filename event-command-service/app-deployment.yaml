@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ecs-app-deployment
+  namespace: tsm
 spec:
   selector:
     matchLabels:
@@ -27,6 +28,7 @@ metadata:
   name: ecs-app-service
   labels:
     app: ecs-app
+  namespace: tsm
 spec:
   type: NodePort
   ports:

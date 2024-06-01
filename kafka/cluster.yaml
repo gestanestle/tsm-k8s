@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: tsm-cluster
+  name: kafka-cluster
   annotations:
     strimzi.io/node-pools: enabled
     strimzi.io/kraft: enabled
